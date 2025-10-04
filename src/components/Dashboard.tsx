@@ -19,10 +19,10 @@ interface DashboardProps {
 }
 
 const stats = [
-  { label: "Active Papers", value: "12", icon: FileText, color: "text-primary" },
-  { label: "In Review", value: "5", icon: Clock, color: "text-warning" },
-  { label: "Approved", value: "23", icon: CheckCircle2, color: "text-success" },
-  { label: "Active Users", value: "8", icon: Users, color: "text-secondary" },
+  { label: "Active Papers", value: "12", icon: FileText, color: "text-primary", bgColor: "bg-primary/10" },
+  { label: "In Review", value: "5", icon: Clock, color: "text-warning", bgColor: "bg-warning/10" },
+  { label: "Approved", value: "23", icon: CheckCircle2, color: "text-success", bgColor: "bg-success/10" },
+  { label: "Active Users", value: "8", icon: Users, color: "text-secondary", bgColor: "bg-secondary/10" },
 ];
 
 const recentActivity = [
@@ -118,7 +118,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
             Real-time collaboration and workflow management
           </p>
         </div>
-        <Button className="gap-2 shadow-lg" onClick={() => onNavigate("editor")}>
+        <Button className="gap-2 shadow-lg hover:shadow-xl transition-shadow" onClick={() => onNavigate("editor")}>
           <FileText className="h-4 w-4" />
           New Paper
         </Button>
@@ -127,13 +127,15 @@ export function Dashboard({ onNavigate }: DashboardProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat) => (
           <Card key={stat.label} className="border-border hover:shadow-md transition-shadow">
-            <CardContent className="p-6">
+            <CardContent className="p-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{stat.label}</p>
-                  <p className="text-3xl font-bold text-foreground mt-2">{stat.value}</p>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wide">{stat.label}</p>
+                  <p className="text-2xl font-bold text-foreground mt-2">{stat.value}</p>
                 </div>
-                <stat.icon className={`h-10 w-10 ${stat.color}`} />
+                <div className={`h-10 w-10 rounded-lg ${stat.bgColor} flex items-center justify-center`}>
+                  <stat.icon className={`h-5 w-5 ${stat.color}`} />
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -142,9 +144,11 @@ export function Dashboard({ onNavigate }: DashboardProps) {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="lg:col-span-2 border-border">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <FileText className="h-5 w-5 text-primary" />
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center gap-2 text-base">
+              <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                <FileText className="h-4 w-4 text-primary" />
+              </div>
               Recent Papers
             </CardTitle>
           </CardHeader>
@@ -186,9 +190,11 @@ export function Dashboard({ onNavigate }: DashboardProps) {
         </Card>
 
         <Card className="border-border">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Clock className="h-5 w-5 text-secondary" />
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center gap-2 text-base">
+              <div className="h-8 w-8 rounded-lg bg-secondary/10 flex items-center justify-center">
+                <Clock className="h-4 w-4 text-secondary" />
+              </div>
               Activity Feed
             </CardTitle>
           </CardHeader>

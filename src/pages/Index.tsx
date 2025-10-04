@@ -39,33 +39,33 @@ const Index = () => {
         <AppSidebar currentView={currentView} onNavigate={setCurrentView} />
         
         <div className="flex-1 flex flex-col">
-          <header className="h-16 border-b border-border bg-card flex items-center justify-between px-6">
-            <div className="flex items-center gap-4">
+          <header className="h-14 border-b border-border bg-card flex items-center justify-between px-6">
+            <div className="flex items-center gap-3">
               <SidebarTrigger />
-              <h1 className="text-xl font-semibold text-foreground">
+              <h1 className="text-lg font-semibold text-foreground">
                 Question Paper Management
               </h1>
             </div>
             
-            <div className="flex items-center gap-4">
-              <Button variant="ghost" size="sm" className="gap-2">
+            <div className="flex items-center gap-3">
+              <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-foreground">
                 <Users className="h-4 w-4" />
-                <span>3 Active Users</span>
+                <span className="text-sm">3 Active</span>
               </Button>
               
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 pl-3 border-l border-border">
                 <div className="text-right">
                   <p className="text-sm font-medium text-foreground">{currentUser.name}</p>
                   <p className="text-xs text-muted-foreground">{currentUser.role}</p>
                 </div>
-                <div className="h-10 w-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-semibold">
+                <div className="h-9 w-9 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center font-semibold text-sm">
                   {currentUser.avatar}
                 </div>
               </div>
             </div>
           </header>
 
-          <main className="flex-1 overflow-auto">
+          <main className="flex-1 overflow-auto bg-gradient-to-br from-background to-muted/20">
             {renderView()}
           </main>
         </div>
