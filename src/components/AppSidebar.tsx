@@ -1,12 +1,16 @@
 import { 
   LayoutDashboard, 
-  FileEdit, 
+  FileText, 
   GitBranch, 
-  Shield, 
   History,
   Settings,
   Search,
-  Command
+  Command,
+  BookOpen,
+  Users,
+  Calendar,
+  ClipboardList,
+  Award,
 } from "lucide-react";
 import {
   Sidebar,
@@ -21,7 +25,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 
-type View = "dashboard" | "editor" | "workflow" | "audit";
+type View = "dashboard" | "editor" | "workflow" | "audit" | "subject-planning" | "capacity" | "timetable" | "exams" | "results";
 
 interface AppSidebarProps {
   currentView: View;
@@ -38,7 +42,7 @@ const menuItems = [
   },
   { 
     title: "Paper Editor", 
-    icon: FileEdit, 
+    icon: FileText, 
     view: "editor" as View,
     color: "text-secondary",
     bgColor: "hover:bg-secondary/10"
@@ -57,6 +61,41 @@ const menuItems = [
     color: "text-success",
     bgColor: "hover:bg-success/10"
   },
+  { 
+    title: "Subject Planning", 
+    icon: BookOpen, 
+    view: "subject-planning" as View,
+    color: "text-blue-600",
+    bgColor: "hover:bg-blue-500/10"
+  },
+  { 
+    title: "Capacity Planning", 
+    icon: Users, 
+    view: "capacity" as View,
+    color: "text-purple-600",
+    bgColor: "hover:bg-purple-500/10"
+  },
+  { 
+    title: "Timetable", 
+    icon: Calendar, 
+    view: "timetable" as View,
+    color: "text-orange-600",
+    bgColor: "hover:bg-orange-500/10"
+  },
+  { 
+    title: "Exam Management", 
+    icon: ClipboardList, 
+    view: "exams" as View,
+    color: "text-rose-600",
+    bgColor: "hover:bg-rose-500/10"
+  },
+  { 
+    title: "Results", 
+    icon: Award, 
+    view: "results" as View,
+    color: "text-emerald-600",
+    bgColor: "hover:bg-emerald-500/10"
+  },
 ];
 
 export function AppSidebar({ currentView, onNavigate }: AppSidebarProps) {
@@ -69,7 +108,7 @@ export function AppSidebar({ currentView, onNavigate }: AppSidebarProps) {
         <div className="p-4 border-b border-border">
           <div className="flex items-center gap-2 mb-4">
             <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-              <Shield className="h-4 w-4 text-white" />
+              <FileText className="h-4 w-4 text-white" />
             </div>
             <div>
               <h2 className="text-base font-bold text-foreground">ExamGuard</h2>

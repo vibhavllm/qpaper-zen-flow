@@ -19,7 +19,7 @@ import avatarSarah from "@/assets/avatar-sarah.jpg";
 import avatarRobert from "@/assets/avatar-robert.jpg";
 
 interface DashboardProps {
-  onNavigate: (view: "dashboard" | "editor" | "workflow" | "audit") => void;
+  onNavigate: (view: "dashboard" | "editor" | "workflow" | "audit" | "subject-planning" | "capacity" | "timetable" | "exams" | "results") => void;
 }
 
 const stats = [
