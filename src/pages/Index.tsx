@@ -7,6 +7,8 @@ import { ApprovalWorkflow } from "@/components/ApprovalWorkflow";
 import { AuditLog } from "@/components/AuditLog";
 import { Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import avatarSarah from "@/assets/avatar-sarah.jpg";
 
 type View = "dashboard" | "editor" | "workflow" | "audit";
 
@@ -58,9 +60,9 @@ const Index = () => {
                   <p className="text-sm font-medium text-foreground">{currentUser.name}</p>
                   <p className="text-xs text-muted-foreground">{currentUser.role}</p>
                 </div>
-                <div className="h-9 w-9 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center font-semibold text-sm">
-                  {currentUser.avatar}
-                </div>
+                <Avatar className="h-9 w-9 border-2 border-border">
+                  <AvatarImage src={avatarSarah} alt={currentUser.name} />
+                </Avatar>
               </div>
             </div>
           </header>

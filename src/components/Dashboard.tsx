@@ -12,7 +12,11 @@ import {
   GitBranch,
   ArrowRight
 } from "lucide-react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import avatarJames from "@/assets/avatar-james.jpg";
+import avatarMaria from "@/assets/avatar-maria.jpg";
+import avatarSarah from "@/assets/avatar-sarah.jpg";
+import avatarRobert from "@/assets/avatar-robert.jpg";
 
 interface DashboardProps {
   onNavigate: (view: "dashboard" | "editor" | "workflow" | "audit") => void;
@@ -28,7 +32,7 @@ const stats = [
 const recentActivity = [
   {
     id: 1,
-    user: { name: "Dr. James Wilson", avatar: "JW" },
+    user: { name: "Dr. James Wilson", avatar: avatarJames },
     action: "suggested changes to",
     paper: "Mathematics Final 2025",
     time: "2 minutes ago",
@@ -36,7 +40,7 @@ const recentActivity = [
   },
   {
     id: 2,
-    user: { name: "Prof. Maria Garcia", avatar: "MG" },
+    user: { name: "Prof. Maria Garcia", avatar: avatarMaria },
     action: "approved",
     paper: "Physics Midterm 2025",
     time: "15 minutes ago",
@@ -44,7 +48,7 @@ const recentActivity = [
   },
   {
     id: 3,
-    user: { name: "Dr. Sarah Chen", avatar: "SC" },
+    user: { name: "Dr. Sarah Chen", avatar: avatarSarah },
     action: "is editing",
     paper: "Chemistry Final 2025",
     time: "Active now",
@@ -52,7 +56,7 @@ const recentActivity = [
   },
   {
     id: 4,
-    user: { name: "Dr. Robert Lee", avatar: "RL" },
+    user: { name: "Dr. Robert Lee", avatar: avatarRobert },
     action: "added comments to",
     paper: "Biology Quiz 3",
     time: "1 hour ago",
@@ -202,9 +206,7 @@ export function Dashboard({ onNavigate }: DashboardProps) {
             {recentActivity.map((activity) => (
               <div key={activity.id} className="flex gap-3">
                 <Avatar className="h-10 w-10 border-2 border-border">
-                  <AvatarFallback className="bg-primary text-primary-foreground text-sm">
-                    {activity.user.avatar}
-                  </AvatarFallback>
+                  <AvatarImage src={activity.user.avatar} alt={activity.user.name} />
                 </Avatar>
                 <div className="flex-1 space-y-1">
                   <p className="text-sm">

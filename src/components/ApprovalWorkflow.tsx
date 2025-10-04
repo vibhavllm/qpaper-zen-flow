@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import {
   CheckCircle2,
   XCircle,
@@ -12,6 +12,10 @@ import {
   AlertTriangle
 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import avatarSarah from "@/assets/avatar-sarah.jpg";
+import avatarMaria from "@/assets/avatar-maria.jpg";
+import avatarJames from "@/assets/avatar-james.jpg";
+import avatarRobert from "@/assets/avatar-robert.jpg";
 
 const workflowStages = [
   { stage: "Draft", status: "completed", icon: FileText },
@@ -27,7 +31,7 @@ const pendingApprovals = [
     title: "Mathematics Final Exam 2025",
     subject: "Mathematics",
     version: "v3.2",
-    author: { name: "Dr. Sarah Chen", avatar: "SC" },
+    author: { name: "Dr. Sarah Chen", avatar: avatarSarah },
     submittedDate: "2 hours ago",
     priority: "high",
     changes: 12,
@@ -38,7 +42,7 @@ const pendingApprovals = [
     title: "Chemistry Midterm 2025",
     subject: "Chemistry",
     version: "v2.0",
-    author: { name: "Prof. Maria Garcia", avatar: "MG" },
+    author: { name: "Prof. Maria Garcia", avatar: avatarMaria },
     submittedDate: "1 day ago",
     priority: "medium",
     changes: 8,
@@ -49,7 +53,7 @@ const pendingApprovals = [
     title: "Biology Quiz 3",
     subject: "Biology",
     version: "v1.5",
-    author: { name: "Dr. James Wilson", avatar: "JW" },
+    author: { name: "Dr. James Wilson", avatar: avatarJames },
     submittedDate: "3 days ago",
     priority: "low",
     changes: 4,
@@ -61,14 +65,14 @@ const recentApprovals = [
   {
     id: 1,
     title: "Physics Midterm 2025",
-    approver: { name: "Dr. Sarah Chen", avatar: "SC" },
+    approver: { name: "Dr. Sarah Chen", avatar: avatarSarah },
     action: "approved",
     time: "2 hours ago"
   },
   {
     id: 2,
     title: "English Literature Final",
-    approver: { name: "Prof. Robert Lee", avatar: "RL" },
+    approver: { name: "Dr. Robert Lee", avatar: avatarRobert },
     action: "rejected",
     time: "1 day ago"
   },
@@ -174,9 +178,7 @@ export function ApprovalWorkflow() {
 
                     <div className="flex flex-col items-end gap-2">
                       <Avatar className="h-10 w-10 border-2 border-border">
-                        <AvatarFallback className="bg-primary text-primary-foreground text-sm">
-                          {paper.author.avatar}
-                        </AvatarFallback>
+                        <AvatarImage src={paper.author.avatar} alt={paper.author.name} />
                       </Avatar>
                       <p className="text-xs text-muted-foreground text-right">
                         {paper.author.name}
@@ -218,9 +220,7 @@ export function ApprovalWorkflow() {
               <div key={approval.id} className="space-y-2">
                 <div className="flex items-start gap-3">
                   <Avatar className="h-8 w-8 border-2 border-border">
-                    <AvatarFallback className="bg-primary text-primary-foreground text-xs">
-                      {approval.approver.avatar}
-                    </AvatarFallback>
+                    <AvatarImage src={approval.approver.avatar} alt={approval.approver.name} />
                   </Avatar>
                   <div className="flex-1">
                     <p className="text-sm">

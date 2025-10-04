@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import {
@@ -18,17 +18,20 @@ import {
 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import avatarSarah from "@/assets/avatar-sarah.jpg";
+import avatarMaria from "@/assets/avatar-maria.jpg";
+import avatarJames from "@/assets/avatar-james.jpg";
 
 const activeUsers = [
-  { name: "Dr. Sarah Chen", avatar: "SC", status: "editing", section: "Question 3" },
-  { name: "Prof. Maria Garcia", avatar: "MG", status: "viewing", section: null },
-  { name: "Dr. James Wilson", avatar: "JW", status: "commenting", section: "Question 1" },
+  { name: "Dr. Sarah Chen", avatar: avatarSarah, status: "editing", section: "Question 3" },
+  { name: "Prof. Maria Garcia", avatar: avatarMaria, status: "viewing", section: null },
+  { name: "Dr. James Wilson", avatar: avatarJames, status: "commenting", section: "Question 1" },
 ];
 
 const comments = [
   {
     id: 1,
-    user: { name: "Dr. James Wilson", avatar: "JW" },
+    user: { name: "Dr. James Wilson", avatar: avatarJames },
     content: "This question might be too complex for the time allocated. Consider simplifying or extending the time.",
     section: "Question 1",
     time: "5 minutes ago",
@@ -36,7 +39,7 @@ const comments = [
   },
   {
     id: 2,
-    user: { name: "Prof. Maria Garcia", avatar: "MG" },
+    user: { name: "Prof. Maria Garcia", avatar: avatarMaria },
     content: "Great addition! This aligns perfectly with the learning objectives.",
     section: "Question 3",
     time: "15 minutes ago",
@@ -109,9 +112,7 @@ D) 20 cm`);
                     key={user.name}
                     className="h-8 w-8 border-2 border-card ring-2 ring-primary/20"
                   >
-                    <AvatarFallback className="bg-primary text-primary-foreground text-xs">
-                      {user.avatar}
-                    </AvatarFallback>
+                    <AvatarImage src={user.avatar} alt={user.name} />
                   </Avatar>
                 ))}
               </div>
@@ -202,9 +203,7 @@ D) 20 cm`);
                 {activeUsers.map((user) => (
                   <div key={user.name} className="flex items-center gap-3">
                     <Avatar className="h-10 w-10 border-2 border-border">
-                      <AvatarFallback className="bg-primary text-primary-foreground text-sm">
-                        {user.avatar}
-                      </AvatarFallback>
+                      <AvatarImage src={user.avatar} alt={user.name} />
                     </Avatar>
                     <div className="flex-1">
                       <p className="text-sm font-medium text-foreground">{user.name}</p>
@@ -239,9 +238,7 @@ D) 20 cm`);
                   >
                     <div className="flex items-start gap-3 mb-2">
                       <Avatar className="h-8 w-8 border-2 border-border">
-                        <AvatarFallback className="bg-primary text-primary-foreground text-xs">
-                          {comment.user.avatar}
-                        </AvatarFallback>
+                        <AvatarImage src={comment.user.avatar} alt={comment.user.name} />
                       </Avatar>
                       <div className="flex-1">
                         <div className="flex items-center justify-between">

@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,12 +17,16 @@ import {
   Eye
 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import avatarSarah from "@/assets/avatar-sarah.jpg";
+import avatarJames from "@/assets/avatar-james.jpg";
+import avatarMaria from "@/assets/avatar-maria.jpg";
+import avatarRobert from "@/assets/avatar-robert.jpg";
 
 const auditEvents = [
   {
     id: 1,
     timestamp: "2025-10-04 19:45:23",
-    user: { name: "Dr. Sarah Chen", avatar: "SC", role: "COE Admin" },
+    user: { name: "Dr. Sarah Chen", avatar: avatarSarah, role: "COE Admin" },
     action: "approved",
     resource: "Mathematics Final Exam 2025",
     details: "Version 3.2 approved for publication",
@@ -33,7 +37,7 @@ const auditEvents = [
   {
     id: 2,
     timestamp: "2025-10-04 19:30:15",
-    user: { name: "Dr. James Wilson", avatar: "JW", role: "Author" },
+    user: { name: "Dr. James Wilson", avatar: avatarJames, role: "Author" },
     action: "edited",
     resource: "Mathematics Final Exam 2025",
     details: "Modified Question 3, added 2 new questions",
@@ -44,7 +48,7 @@ const auditEvents = [
   {
     id: 3,
     timestamp: "2025-10-04 19:15:08",
-    user: { name: "Prof. Maria Garcia", avatar: "MG", role: "Reviewer" },
+    user: { name: "Prof. Maria Garcia", avatar: avatarMaria, role: "Reviewer" },
     action: "commented",
     resource: "Chemistry Midterm 2025",
     details: "Added review comments on Section B",
@@ -55,7 +59,7 @@ const auditEvents = [
   {
     id: 4,
     timestamp: "2025-10-04 18:50:42",
-    user: { name: "Dr. Sarah Chen", avatar: "SC", role: "COE Admin" },
+    user: { name: "Dr. Sarah Chen", avatar: avatarSarah, role: "COE Admin" },
     action: "locked",
     resource: "Physics Final Exam 2025",
     details: "Section locked for exclusive editing",
@@ -66,7 +70,7 @@ const auditEvents = [
   {
     id: 5,
     timestamp: "2025-10-04 18:30:19",
-    user: { name: "System", avatar: "SY", role: "Automated" },
+    user: { name: "System", avatar: null, role: "Automated" },
     action: "exported",
     resource: "Biology Quiz 3",
     details: "PDF exported with watermark #WM-2025-1004-001",
@@ -77,7 +81,7 @@ const auditEvents = [
   {
     id: 6,
     timestamp: "2025-10-04 18:15:55",
-    user: { name: "Dr. Robert Lee", avatar: "RL", role: "Author" },
+    user: { name: "Dr. Robert Lee", avatar: avatarRobert, role: "Author" },
     action: "branched",
     resource: "English Literature Final",
     details: "Created review branch from v2.1",
@@ -88,7 +92,7 @@ const auditEvents = [
   {
     id: 7,
     timestamp: "2025-10-04 17:45:33",
-    user: { name: "External Reviewer", avatar: "ER", role: "Guest" },
+    user: { name: "External Reviewer", avatar: null, role: "Guest" },
     action: "viewed",
     resource: "Mathematics Final Exam 2025",
     details: "Accessed via temporary link (expires in 24h)",
@@ -99,7 +103,7 @@ const auditEvents = [
   {
     id: 8,
     timestamp: "2025-10-04 17:20:11",
-    user: { name: "Security System", avatar: "SS", role: "Automated" },
+    user: { name: "Security System", avatar: null, role: "Automated" },
     action: "alert",
     resource: "System Security",
     details: "Unusual access pattern detected and logged",
@@ -231,9 +235,13 @@ export function AuditLog() {
 
                       <div className="flex items-center gap-3 pt-2">
                         <Avatar className="h-8 w-8 border-2 border-border">
-                          <AvatarFallback className="bg-primary text-primary-foreground text-xs">
-                            {event.user.avatar}
-                          </AvatarFallback>
+                          {event.user.avatar ? (
+                            <AvatarImage src={event.user.avatar} alt={event.user.name} />
+                          ) : (
+                            <AvatarFallback className="bg-muted text-muted-foreground text-xs">
+                              {event.user.name.substring(0, 2).toUpperCase()}
+                            </AvatarFallback>
+                          )}
                         </Avatar>
                         <div>
                           <p className="text-sm font-medium text-foreground">{event.user.name}</p>
